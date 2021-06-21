@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace DogGo.Repositories
 {
-    public class OwnerReposirtory : IOwnerRepository
+    public class OwnerRepository : IOwnerRepository
     {
         private readonly IConfiguration _config;
-        public OwnerReposirtory(IConfiguration config)
+        public OwnerRepository(IConfiguration config)
         {
             _config = config;
         }
