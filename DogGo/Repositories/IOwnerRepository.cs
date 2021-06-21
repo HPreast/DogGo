@@ -1,8 +1,6 @@
 ﻿using DogGo.Models;
-using System;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DogGo.Repositories
 {
