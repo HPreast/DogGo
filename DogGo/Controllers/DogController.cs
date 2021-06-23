@@ -31,7 +31,7 @@ namespace DogGo.Controllers
         }
 
         // GET: DogController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -39,16 +39,17 @@ namespace DogGo.Controllers
         // POST: DogController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Dog dog)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                _dogRepo.AddDog(dog);
+                return RedirectToAction("Index");
+            //try
+            //{
+            //}
+            //catch (Exception ex)
+            //{
+            //    return View(dog);
+            //}
         }
 
         // GET: DogController/Edit/5
