@@ -31,7 +31,7 @@ namespace DogGo.Repositories
                 using(SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT 
-                                        Name, OwnerId, Breed
+                                        Id, Name, OwnerId, Breed
                                         FROM Dog";
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -40,6 +40,7 @@ namespace DogGo.Repositories
                     {
                         Dog dog = new Dog
                         {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Name = reader.GetString(reader.GetOrdinal("Name")),
                             OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerId")),
                             Breed = reader.GetString(reader.GetOrdinal("Breed")),
@@ -119,7 +120,7 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"UPDATE Dog 
-                                        SET 
+                                        SET
                                             [Name] = @name,
                                              OwnerId = @ownerId,
                                              Breed = @breed,
@@ -132,6 +133,7 @@ namespace DogGo.Repositories
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
                     cmd.Parameters.AddWithValue("@notes", dog.Notes);
                     cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl);
+                    cmd.Parameters.AddWithValue("@id", dog.Id);
 
                     cmd.ExecuteNonQuery();
                 }
